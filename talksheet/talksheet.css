@@ -1,0 +1,19 @@
+TalkSheetTable {
+    align: left middle;
+}
+
+TalkSheetChat {
+    align: right middle;
+}
+
+Screen {
+    layout: grid;
+    grid-size: 3 3;
+    grid-gutter: 1;
+}
+
+Container {
+    background: $boost;
+    border: solid gray;
+    height: 100%;
+}
