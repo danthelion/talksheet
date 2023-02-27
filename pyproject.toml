@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "talksheet"
+version = "0.1.0"
+description = "Interact with flat files using natural languages"
+authors = ["Daniel Palma <danivgy@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+langchain = "^0.0.94"
+duckdb-engine = "^0.6.8"
+python-dotenv = "^1.0.0"
+openai = "^0.26.5"
+textual = "^0.12.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.1.0"
+textual = {extras = ["dev"], version = "^0.12.1"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
