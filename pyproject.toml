@@ -13,6 +13,8 @@ duckdb-engine = "^0.6.8"
 python-dotenv = "^1.0.0"
 openai = "^0.26.5"
 textual = "^0.12.1"
+duckdb = "^0.7.1"
+pandas = "^1.5.3"
 
 
 [tool.poetry.group.dev.dependencies]
