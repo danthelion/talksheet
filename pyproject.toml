@@ -8,10 +8,10 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-langchain = "^0.0.94"
-duckdb-engine = "^0.6.8"
+langchain = "^0.0.100"
+duckdb-engine = "^0.6.9"
 python-dotenv = "^1.0.0"
-openai = "^0.26.5"
+openai = "^0.27.0"
 textual = "^0.12.1"
 duckdb = "^0.7.1"
 pandas = "^1.5.3"
@@ -20,6 +20,7 @@ pandas = "^1.5.3"
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.1.0"
 textual = {extras = ["dev"], version = "^0.12.1"}
+openai = "^0.27.0"
 
 [build-system]
 requires = ["poetry-core"]

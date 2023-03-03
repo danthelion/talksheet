@@ -1,18 +1,12 @@
 import pandas as pd
 from textual.app import App, ComposeResult
-from textual.reactive import reactive
 from textual.containers import Container
 from textual.widgets import (
     DataTable,
     Header,
     Footer,
     Input,
-    Static,
-    Button,
-    Markdown,
-    TextLog,
 )
-from textual.widget import Widget
 
 from engine.engine import read_data_from_csv
 
@@ -37,32 +31,35 @@ class TalkSheet(App):
         )
         yield Footer()
 
-    def on_ready(self) -> None:
-        """Called  when the DOM is ready."""
-        pass
-
     def on_input_submitted(self, event: Input.Submitted) -> None:
         if event.input.id == "question":
             self.ask_question()
+        if event.input.id == "data_file":
+            self.load_base_table(event.input.value)
 
-    def on_mount(self) -> None:
-        df = pd.read_csv("sample_data/purchase_items.csv", nrows=10)
+    def load_base_table(self, path_to_csv: str):
+        df = pd.read_csv(path_to_csv, nrows=30)
+        self.source_data_table.clear(columns=True)
         self.source_data_table.add_columns(*df.columns)
         self.source_data_table.add_rows(df.values)
 
-    def on_button_pressed(self, event: Button.Pressed) -> None:
-        self.ask_question()
+    def on_mount(self) -> None:
+        source_file_path = self.query_one("#data_file")
+        source_file_path.value = "sample_data/users.csv"
+        df = pd.read_csv(source_file_path.value, nrows=30)
+        self.source_data_table.add_columns(*df.columns)
+        self.source_data_table.add_rows(df.values)
 
     def ask_question(self):
         question = self.query_one("#question")
-        res = read_data_from_csv(question.value, "sample_data/purchase_items.csv")
-        # text_log = self.query_one(TextLog)
-        # text_log.write(res)
-        results = eval(res)
+        source_file_path = self.query_one("#data_file")
+        results = read_data_from_csv(question.value, source_file_path.value)
+        self.results_data_table.clear(columns=True)
         if len(results):
-            columns = ["column_" + str(i) for i in range(len(results[0]))]
+            columns = results[1]
+            values = results[0]
             self.results_data_table.add_columns(*columns)
-        self.results_data_table.add_rows(eval(res))
+            self.results_data_table.add_rows(values)
 
 
 app = TalkSheet(css_path="talksheet.css")
