@@ -61,12 +61,15 @@ class TalkSheet(App):
             self.load_base_table(event.input.value)
 
     def load_base_table(self, path_to_csv: str):
-        df = pd.read_csv(path_to_csv, nrows=30)
+        df = pd.read_csv(path_to_csv, nrows=50)
         self.source_data_table.clear(columns=True)
         self.source_data_table.add_columns(*df.columns)
         self.source_data_table.add_rows(df.values)
         self.engine = create_engine("duckdb:///:memory:")
+        self.engine.execute("INSTALL httpfs;")
+        self.engine.execute("LOAD httpfs;")
         file_name = os.path.basename(path_to_csv).split(".")[0]
+        file_name = "".join([c for c in file_name if c.isalnum() or c == "_"])
         self.engine.execute(
             f"CREATE TABLE {file_name} AS SELECT * FROM '{path_to_csv}';"
         )
@@ -74,7 +77,7 @@ class TalkSheet(App):
 
     def on_mount(self) -> None:
         source_file_path = self.query_one("#data_file")
-        source_file_path.value = "sample_data/purchase_items.csv"
+        source_file_path.value = "sample_data/users.csv"
         self.load_base_table(source_file_path.value)
 
     async def ask_question(self):
