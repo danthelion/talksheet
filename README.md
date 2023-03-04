@@ -1,6 +1,7 @@
 # Talksheet
 
-Talksheet is an AI-powered CLI tool for exploring data.
+Talksheet is an AI-powered CLI tool for exploring data. Powered
+by [Langchain](https://langchain.com/) & [DuckDB](https://duckdb.org/).
 
 Currently, it can read data from local CSV files:
 
