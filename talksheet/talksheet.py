@@ -77,7 +77,11 @@ class TalkSheet(App):
 
     def on_mount(self) -> None:
         source_file_path = self.query_one("#data_file")
-        source_file_path.value = "sample_data/users.csv"
+        # Default to bundled sample data
+        sample_data_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "sample_data", "users.csv"
+        )
+        source_file_path.value = sample_data_path
         self.load_base_table(source_file_path.value)
 
     async def ask_question(self):
