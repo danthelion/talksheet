@@ -1,11 +1,10 @@
 [tool.poetry]
 name = "talksheet"
-version = "0.7.0"
+version = "0.9.0"
 description = "Interact with flat files using natural languages"
 authors = ["Daniel Palma <danivgy@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-include = [{ path = "sample_data" }]
 
 [tool.poetry.scripts]
 talksheet = "talksheet.talksheet:app.run"

@@ -2,14 +2,14 @@
 
 Talksheet is an AI-powered CLI tool for exploring data.
 
-It can read data from local CSV files
+Currently, it can read data from local CSV files:
 
-![local_csv_example](assets/pic_loca_csv.png)
+![local_csv_example](assets/pic_local_csv.png)
 
-And from remote CSV files
+And from remote CSV files, such as those hosted on GitHub,
+like [this one](https://media.githubusercontent.com/media/datablist/sample-csv-files/d6e0a4a5b33f41968193d56b18fcb030ddc166d9/files/organizations/organizations-100.csv)
 
 ![remote_csv_example](assets/pic_remote_csv.png)
-
 
 ## Installation
 
@@ -18,6 +18,8 @@ Talksheet is available on PyPI. You can install it with pip:
 ```bash
 pip install talksheet
 ```
+
+Developed and tested with Python 3.10
 
 ## Usage
 
@@ -33,4 +35,8 @@ talksheet
 
 - Better UI/UX
 - Handle more data formats
+- Customize CSV format
 - Export results
+- Startup with a specific file
+- Configure OpenAI API key in the UI
+- Save chat history
